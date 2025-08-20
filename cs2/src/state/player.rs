@@ -46,6 +46,7 @@ pub struct StatePawnInfo {
 
     pub player_health: i32,
     pub player_has_defuser: bool,
+    pub player_has_bomb: bool,
     pub player_name: Option<String>,
     pub weapon: WeaponId,
     pub weapon_current_ammo: i32,
@@ -160,6 +161,7 @@ impl State for StatePawnInfo {
             .value_reference(memory.view_arc());
         let weapon_type = if let Some(weapon) = &weapon_ref {
             weapon
+                .cast::<dyn C_EconEntity>()
                 .m_AttributeManager()?
                 .m_Item()?
                 .m_iItemDefinitionIndex()?
@@ -176,6 +178,14 @@ impl State for StatePawnInfo {
 
         let player_flashtime = player_pawn.m_flFlashBangTime()?;
 
+        // Use cached bomb carrier state instead of iterating through all entities
+        let player_has_bomb = if let Ok(bomb_carrier) = states.resolve::<super::BombCarrierInfo>(())
+        {
+            bomb_carrier.carrier_entity_id == Some(handle.get_entity_index())
+        } else {
+            false
+        };
+
         Ok(Self {
             controller_entity_id: if controller_handle.is_valid() {
                 Some(controller_handle.get_entity_index())
@@ -188,6 +198,7 @@ impl State for StatePawnInfo {
 
             player_name,
             player_has_defuser,
+            player_has_bomb,
             player_health,
             weapon: WeaponId::from_id(weapon_type).unwrap_or(WeaponId::Unknown),
             weapon_current_ammo,
