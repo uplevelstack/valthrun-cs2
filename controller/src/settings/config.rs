@@ -218,7 +218,7 @@ pub struct AppSettings {
     pub esp_mode: KeyToggleMode,
 
     #[serde(default = "default_key_none")]
-    pub esp_toogle: Option<HotKey>,
+    pub esp_toggle: Option<HotKey>,
 
     #[serde(default = "default_esp_configs")]
     pub esp_settings: BTreeMap<String, EspConfig>,

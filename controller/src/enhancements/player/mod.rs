@@ -95,7 +95,7 @@ impl Enhancement for PlayerESP {
         let settings = ctx.states.resolve::<AppSettings>(())?;
         if self
             .toggle
-            .update(&settings.esp_mode, ctx.input, &settings.esp_toogle)
+            .update(&settings.esp_mode, ctx.input, &settings.esp_toggle)
         {
             ctx.cs2.add_metrics_record(
                 obfstr!("feature-esp-toggle"),

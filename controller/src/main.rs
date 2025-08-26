@@ -229,7 +229,7 @@ impl Application {
         }
 
         if ui.is_key_pressed_no_repeat(self.settings().key_settings.0) {
-            log::debug!("Toogle settings");
+            log::debug!("Toggle settings");
             self.settings_visible = !self.settings_visible;
             self.cs2.add_metrics_record(
                 "settings-toggled",
@@ -320,7 +320,7 @@ impl Application {
             .position_pivot([0.5, 0.5])
             .build(|| {
                 ui.text("We detected you pressed the \"INSERT\" key.");
-                ui.text("If you ment to open the Valthrun Overlay please use the \"PAUSE\" key.");
+                ui.text("If you meant to open the Valthrun Overlay please use the \"PAUSE\" key.");
                 ui.dummy([0.0, 2.5]);
                 ui.separator();
                 ui.dummy([0.0, 2.5]);

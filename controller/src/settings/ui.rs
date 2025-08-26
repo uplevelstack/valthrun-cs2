@@ -254,7 +254,7 @@ impl SettingsUI {
 
                         {
                             let _enabled = ui.begin_enabled(matches!(settings.esp_mode, KeyToggleMode::Toggle | KeyToggleMode::Trigger));
-                            ui.button_key_optional(obfstr!("ESP Toggle/Hold"), &mut settings.esp_toogle, [150.0, 0.0]);
+                            ui.button_key_optional(obfstr!("ESP Toggle/Hold"), &mut settings.esp_toggle, [150.0, 0.0]);
                         }
                     }
 
@@ -1893,7 +1893,7 @@ impl SettingsUI {
             GrenadeHelperTransferState::ExportSuccess { target_path } => {
                 let mut popup_open = true;
                 if let Some(_popup) = ui
-                    .modal_popup_config("Export successfull")
+                    .modal_popup_config("Export successful")
                     .opened(&mut popup_open)
                     .always_auto_resize(true)
                     .begin_popup()
@@ -1908,7 +1908,7 @@ impl SettingsUI {
                         popup_open = false;
                     }
                 } else {
-                    ui.open_popup("Export successfull");
+                    ui.open_popup("Export successful");
                 }
 
                 if !popup_open {
@@ -1932,7 +1932,7 @@ impl SettingsUI {
                         popup_open = false;
                     }
                 } else {
-                    ui.open_popup("Import successfull");
+                    ui.open_popup("Import successful");
                 }
 
                 if !popup_open {

@@ -336,7 +336,7 @@ fn read_enum_binding(
         definition.enum_name
     );
     definition
-        .memebers
+        .members
         .reserve(binding.member_count()? as usize);
     for member in binding
         .members()?
@@ -348,7 +348,7 @@ fn read_enum_binding(
             .context("missing enum member name")?;
 
         let member_value = member.value()?;
-        definition.memebers.push(EnumMember {
+        definition.members.push(EnumMember {
             name: member_name,
             value: member_value,
         });

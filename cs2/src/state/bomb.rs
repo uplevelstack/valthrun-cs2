@@ -27,7 +27,7 @@ use crate::{
 
 #[derive(Debug)]
 pub struct BombDefuser {
-    /// Totoal time remaining for a successfull bomb defuse
+    /// Totoal time remaining for a successful bomb defuse
     pub time_remaining: f32,
 
     /// The defusers player name
