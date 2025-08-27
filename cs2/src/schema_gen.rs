@@ -335,9 +335,7 @@ fn read_enum_binding(
         binding_ptr.address,
         definition.enum_name
     );
-    definition
-        .members
-        .reserve(binding.member_count()? as usize);
+    definition.members.reserve(binding.member_count()? as usize);
     for member in binding
         .members()?
         .elements(memory.view(), 0..binding.member_count()? as usize)?

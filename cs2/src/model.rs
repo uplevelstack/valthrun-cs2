@@ -105,12 +105,8 @@ impl CS2Model {
         let memory = cs2.create_memory_view();
         let memory_view = &*memory;
 
-        [
-            self.vhull_min,
-            self.vhull_max,
-            self.view_min,
-            self.view_max,
-        ] = cs2.read_sized::<[nalgebra::Vector3<f32>; 4]>(address + 0x18)?;
+        [self.vhull_min, self.vhull_max, self.view_min, self.view_max] =
+            cs2.read_sized::<[nalgebra::Vector3<f32>; 4]>(address + 0x18)?;
 
         let model = Reference::<dyn CModel>::new(memory.clone(), address);
         let bone_count = model.bone_count()? as usize;
